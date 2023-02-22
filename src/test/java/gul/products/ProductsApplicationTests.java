@@ -47,5 +47,12 @@ class ProductsApplicationTests {
 		pro.setImageUrl(productImageUrl);
 		assertEquals(productImageUrl	, pro.getImageUrl());
 	}
+	@Test
+	void getAndSetProductPrice(){
+		Double price = 68475000D;
+		Product pro = new Product();
+		pro.setPrice(price);
+		assertEquals(price	, pro.getPrice());
+	}
 
 }
