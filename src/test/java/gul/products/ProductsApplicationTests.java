@@ -176,4 +176,13 @@ class ProductsApplicationTests {
 		assertEquals(updateProduct.getImageUrl(), pro.getImageUrl());
 		assertEquals(updateProduct.getPrice(), pro.getPrice());
 }
+@Test
+	void canDeleteAProduct(){
+		Long productId = 1L;
+		willDoNothing().given(productRepository).deleteById(productId);
+		productServiceImp.deleteAProduct(productId);
+		verify(productRepository, times(1)).deleteById(productId);
+		
+
+	}
 }

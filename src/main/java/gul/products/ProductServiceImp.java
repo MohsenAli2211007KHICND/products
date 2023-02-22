@@ -33,4 +33,7 @@ public class ProductServiceImp implements ProductService{
         }
         return productRepository.save(product);
     }
+    public void deleteAProduct(Long id){
+        productRepository.deleteById(id);
+    }
 }
