@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,6 +24,11 @@ public class ProductController {
         return productService.getAllProducts();
     }
     
+    @GetMapping
+    // @ResponseStatus(HttpStatus.CREATED)
+    public Product createNewHotel(@RequestBody Product product){
+        return productService.saveProdcut(product);
+    }
 
     
 }

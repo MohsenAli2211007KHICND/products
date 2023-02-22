@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductServiceImp implements ProductService{
 
         private ProductRepository productRepository;
