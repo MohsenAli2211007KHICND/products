@@ -32,6 +32,13 @@ class ProductsApplicationTests {
 		pro.setShortDescription(productShortDescription);
 		assertEquals(productShortDescription, pro.getShortDescription());
 	}
-
+	
+	@Test
+	void getAndSetProductLongDescription(){
+		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
+		Product pro = new Product();
+		pro.setLongDescription(productLongDescription);
+		assertEquals(productLongDescription, pro.getLongDescription());
+	}
 
 }
