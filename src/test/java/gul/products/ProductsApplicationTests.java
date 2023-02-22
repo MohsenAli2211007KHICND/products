@@ -149,4 +149,31 @@ class ProductsApplicationTests {
 		assertEquals(gottenProduct.getImageUrl(), pro.getImageUrl());
 		assertEquals(gottenProduct.getPrice(), pro.getPrice());
 }
+@Test
+	void canUpdateAProduct(){
+		Long productId = 1L;
+		String productName = "Ruby Slippers";
+		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
+		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
+		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		Double price = 68475000D;
+		Product pro = Product.builder()
+								.id(productId)
+								.productName(productName)
+								.shortDescription(productShortDescription)
+								.longDescription(productLongDescription)
+								.imageUrl(productImageUrl)
+								.price(price)
+								.build();
+		given(productRepository.findByProductName(productName)).willReturn(Optional.of(pro));
+		given(productRepository.save(pro)).willReturn(pro);
+		Product updateProduct = productServiceImp.updateProduct(pro);
+		assertNotNull(updateProduct);
+		assertEquals(updateProduct.getId(), pro.getId());
+		assertEquals(updateProduct.getProductName(), pro.getProductName());
+		assertEquals(updateProduct.getShortDescription(), pro.getShortDescription());
+		assertEquals(updateProduct.getLongDescription(), pro.getLongDescription());
+		assertEquals(updateProduct.getImageUrl(), pro.getImageUrl());
+		assertEquals(updateProduct.getPrice(), pro.getPrice());
+}
 }

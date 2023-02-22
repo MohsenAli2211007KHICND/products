@@ -26,4 +26,11 @@ public class ProductServiceImp implements ProductService{
     public Product getAProdcut(Long id){
         return productRepository.getReferenceById(id);
     }
+    public Product updateProduct(Product product){
+        Optional<Product> savedHotel = productRepository.findByProductName(product.getProductName());
+        if(savedHotel.isEmpty()){
+            throw new InvalidConfigurationPropertyValueException("Name",product.getProductName(), "Product name"+product.getProductName()+" is not exist in database");
+        }
+        return productRepository.save(product);
+    }
 }
