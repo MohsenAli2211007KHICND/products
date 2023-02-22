@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.BDDMockito.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -182,7 +183,40 @@ class ProductsApplicationTests {
 		willDoNothing().given(productRepository).deleteById(productId);
 		productServiceImp.deleteAProduct(productId);
 		verify(productRepository, times(1)).deleteById(productId);
+	}
+	@Test
+	void canGetAllProduct(){
+		Product pro1 = Product.builder()
+								.id(1L)
+								.productName("product 1")
+								.shortDescription("product 1 short description")
+								.longDescription("product 1 long description")
+								.imageUrl("product 1 image")
+								.price(245677D)
+								.build();
+		Product pro2 = Product.builder()
+								.id(1L)
+								.productName("product 2")
+								.shortDescription("product 2 short description")
+								.longDescription("product 2 long description")
+								.imageUrl("product 2 image")
+								.price(2455477D)
+								.build();
 		
-
+		Product pro3 = Product.builder()
+								.id(1L)
+								.productName("product 3")
+								.shortDescription("product 3 short description")
+								.longDescription("product 3 long description")
+								.imageUrl("product 3 image")
+								.price(245652477D)
+								.build();
+		List<Product> products = List.of(pro1, pro2, pro3);
+		given(productRepository.findAll()).willReturn(List.of(pro1, pro2, pro3));
+		List<Product> product = productServiceImp.getAllProducts();
+		assertNotNull(product);
+		assertEquals(product.size(), 3);
+	
+		
 	}
 }

@@ -1,5 +1,6 @@
 package gul.products;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
@@ -35,5 +36,8 @@ public class ProductServiceImp implements ProductService{
     }
     public void deleteAProduct(Long id){
         productRepository.deleteById(id);
+    }
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
     }
 }
