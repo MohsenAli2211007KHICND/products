@@ -69,8 +69,28 @@ class ProductsApplicationTests {
 		assertEquals(productLongDescription, pro.getLongDescription());
 		assertEquals(productImageUrl, pro.getImageUrl());
 		assertEquals(price, pro.getPrice());
-
-
 	}
-
+	@Test
+	void productBuilder(){
+		Long id = 1L;
+		String productName = "Ruby Slippers";
+		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
+		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
+		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		Double price = 68475000D;
+		Product pro = Product.builder()
+								.id(id)
+								.productName(productName)
+								.shortDescription(productShortDescription)
+								.longDescription(productLongDescription)
+								.imageUrl(productImageUrl)
+								.price(price)
+								.build();
+		assertEquals(id, pro.getId());
+		assertEquals(productName, pro.getProductName());
+		assertEquals(productShortDescription, pro.getShortDescription());
+		assertEquals(productLongDescription, pro.getLongDescription());
+		assertEquals(productImageUrl, pro.getImageUrl());
+		assertEquals(price, pro.getPrice());
+	}
 }
