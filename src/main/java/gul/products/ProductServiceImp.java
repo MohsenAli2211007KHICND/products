@@ -23,5 +23,7 @@ public class ProductServiceImp implements ProductService{
         }
         return productRepository.save(product);
     }
-
+    public Product getAProdcut(Long id){
+        return productRepository.getReferenceById(id);
+    }
 }

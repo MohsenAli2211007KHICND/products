@@ -122,6 +122,31 @@ class ProductsApplicationTests {
 		given(productRepository.save(pro)).willReturn(pro);
 		Product savedProduct = productServiceImp.saveProdcut(pro);
 		assertNotNull(savedProduct);
-
 	}
+	@Test
+	void canGetAProduct(){
+		Long productId = 1L;
+		String productName = "Ruby Slippers";
+		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
+		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
+		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		Double price = 68475000D;
+		Product pro = Product.builder()
+								.id(productId)
+								.productName(productName)
+								.shortDescription(productShortDescription)
+								.longDescription(productLongDescription)
+								.imageUrl(productImageUrl)
+								.price(price)
+								.build();
+		given(productRepository.getReferenceById(productId)).willReturn(pro);
+		Product gottenProduct = productServiceImp.getAProdcut(pro.getId());
+		assertNotNull(gottenProduct);
+		assertEquals(gottenProduct.getId(), pro.getId());
+		assertEquals(gottenProduct.getProductName(), pro.getProductName());
+		assertEquals(gottenProduct.getShortDescription(), pro.getShortDescription());
+		assertEquals(gottenProduct.getLongDescription(), pro.getLongDescription());
+		assertEquals(gottenProduct.getImageUrl(), pro.getImageUrl());
+		assertEquals(gottenProduct.getPrice(), pro.getPrice());
+}
 }
