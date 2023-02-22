@@ -12,11 +12,19 @@ class ProductsApplicationTests {
 	void contextLoads() {
 	}
 	@Test
-	void getAndSetId(){
+	void getAndSetProductId(){
 		Long id = 1L;
 		Product pro = new Product();
 		pro.setId(id);
 		assertEquals(id, pro.getId());
 	}
+	@Test
+	void getAndSetProductName(){
+		String productName = "Ruby Slippers";
+		Product pro = new Product();
+		pro.setProductName(productName);
+		assertEquals(productName, pro.getProductName());
+	}
+	
 
 }
