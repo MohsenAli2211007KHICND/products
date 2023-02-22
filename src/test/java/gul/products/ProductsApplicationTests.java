@@ -1,12 +1,23 @@
 package gul.products;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.BDDMockito.*;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ProductsApplicationTests {
+
+	@Mock
+	private ProductRepository productRepository;
+	@InjectMocks
+	private ProductServiceImp productServiceImp;
 
 	@Test
 	void contextLoads() {
@@ -92,5 +103,25 @@ class ProductsApplicationTests {
 		assertEquals(productLongDescription, pro.getLongDescription());
 		assertEquals(productImageUrl, pro.getImageUrl());
 		assertEquals(price, pro.getPrice());
+	}
+	@Test
+	void canSaveProduct(){
+		String productName = "Ruby Slippers";
+		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
+		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
+		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		Double price = 68475000D;
+		Product pro = Product.builder()
+								.productName(productName)
+								.shortDescription(productShortDescription)
+								.longDescription(productLongDescription)
+								.imageUrl(productImageUrl)
+								.price(price)
+								.build();
+		given(productRepository.findByProductName(productName)).willReturn(Optional.empty());
+		given(productRepository.save(pro)).willReturn(pro);
+		Product savedProduct = productServiceImp.saveProdcut(pro);
+		assertNotNull(savedProduct);
+
 	}
 }
