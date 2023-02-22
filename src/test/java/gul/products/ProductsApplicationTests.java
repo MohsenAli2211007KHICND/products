@@ -40,5 +40,12 @@ class ProductsApplicationTests {
 		pro.setLongDescription(productLongDescription);
 		assertEquals(productLongDescription, pro.getLongDescription());
 	}
+	@Test
+	void getAndSetProductImageUrl(){
+		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		Product pro = new Product();
+		pro.setImageUrl(productImageUrl);
+		assertEquals(productImageUrl	, pro.getImageUrl());
+	}
 
 }
