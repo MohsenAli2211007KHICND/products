@@ -1,5 +1,6 @@
 package gul.products;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,10 +21,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String productName;
+    private String name;
+    @Column(columnDefinition = "Text")
     private String shortDescription;
+    @Column(columnDefinition = "Text")
     private String longDescription;
-    private String imageUrl;
+    @Column(columnDefinition = "Text")
+    private String imageLink;
     private Double price;
 
 }

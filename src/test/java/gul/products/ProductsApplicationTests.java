@@ -31,11 +31,11 @@ class ProductsApplicationTests {
 		assertEquals(id, pro.getId());
 	}
 	@Test
-	void getAndSetProductName(){
-		String productName = "Ruby Slippers";
+	void getAndsetName(){
+		String name = "Ruby Slippers";
 		Product pro = new Product();
-		pro.setProductName(productName);
-		assertEquals(productName, pro.getProductName());
+		pro.setName(name);
+		assertEquals(name, pro.getName());
 	}
 	@Test
 	void getAndSetProductShortDescription(){
@@ -53,11 +53,11 @@ class ProductsApplicationTests {
 		assertEquals(productLongDescription, pro.getLongDescription());
 	}
 	@Test
-	void getAndSetProductImageUrl(){
-		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+	void getAndSetProductimageLink(){
+		String productimageLink = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
 		Product pro = new Product();
-		pro.setImageUrl(productImageUrl);
-		assertEquals(productImageUrl	, pro.getImageUrl());
+		pro.setImageLink(productimageLink);
+		assertEquals(productimageLink	, pro.getImageLink());
 	}
 	@Test
 	void getAndSetProductPrice(){
@@ -69,57 +69,57 @@ class ProductsApplicationTests {
 	@Test
 	void getAllArgsConstructor(){
 		Long id = 1L;
-		String productName = "Ruby Slippers";
+		String name = "Ruby Slippers";
 		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
 		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
-		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		String productimageLink = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
 		Double price = 68475000D;
-		Product pro = new Product(id,productName, productShortDescription, productLongDescription, productImageUrl, price);
+		Product pro = new Product(id,name, productShortDescription, productLongDescription, productimageLink, price);
 		assertEquals(id, pro.getId());
-		assertEquals(productName, pro.getProductName());
+		assertEquals(name, pro.getName());
 		assertEquals(productShortDescription, pro.getShortDescription());
 		assertEquals(productLongDescription, pro.getLongDescription());
-		assertEquals(productImageUrl, pro.getImageUrl());
+		assertEquals(productimageLink, pro.getImageLink());
 		assertEquals(price, pro.getPrice());
 	}
 	@Test
 	void productBuilder(){
 		Long id = 1L;
-		String productName = "Ruby Slippers";
+		String name = "Ruby Slippers";
 		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
 		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
-		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		String productimageLink = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
 		Double price = 68475000D;
 		Product pro = Product.builder()
 								.id(id)
-								.productName(productName)
+								.name(name)
 								.shortDescription(productShortDescription)
 								.longDescription(productLongDescription)
-								.imageUrl(productImageUrl)
+								.imageLink(productimageLink)
 								.price(price)
 								.build();
 		assertEquals(id, pro.getId());
-		assertEquals(productName, pro.getProductName());
+		assertEquals(name, pro.getName());
 		assertEquals(productShortDescription, pro.getShortDescription());
 		assertEquals(productLongDescription, pro.getLongDescription());
-		assertEquals(productImageUrl, pro.getImageUrl());
+		assertEquals(productimageLink, pro.getImageLink());
 		assertEquals(price, pro.getPrice());
 	}
 	@Test
 	void canSaveProduct(){
-		String productName = "Ruby Slippers";
+		String name = "Ruby Slippers";
 		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
 		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
-		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		String productimageLink = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
 		Double price = 68475000D;
 		Product pro = Product.builder()
-								.productName(productName)
+								.name(name)
 								.shortDescription(productShortDescription)
 								.longDescription(productLongDescription)
-								.imageUrl(productImageUrl)
+								.imageLink(productimageLink)
 								.price(price)
 								.build();
-		given(productRepository.findByProductName(productName)).willReturn(Optional.empty());
+		given(productRepository.findByname(name)).willReturn(Optional.empty());
 		given(productRepository.save(pro)).willReturn(pro);
 		Product savedProduct = productServiceImp.saveProdcut(pro);
 		assertNotNull(savedProduct);
@@ -127,54 +127,54 @@ class ProductsApplicationTests {
 @Test
 	void canGetAProduct(){
 		Long productId = 1L;
-		String productName = "Ruby Slippers";
+		String name = "Ruby Slippers";
 		String productShortDescription = "An impressive pair of slippersfeaturingthousands of real rubies";
 		String productLongDescription = "An impressive pair of slippersfeaturingthousands of real rubies impressive pair of slippersfeaturingthousands of real rubies";
-		String productImageUrl = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
+		String productimageLink = "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg";
 		Double price = 68475000D;
 		Product pro = Product.builder()
 								.id(productId)
-								.productName(productName)
+								.name(name)
 								.shortDescription(productShortDescription)
 								.longDescription(productLongDescription)
-								.imageUrl(productImageUrl)
+								.imageLink(productimageLink)
 								.price(price)
 								.build();
 		given(productRepository.getReferenceById(productId)).willReturn(pro);
 		Product gottenProduct = productServiceImp.getAProdcut(pro.getId());
 		assertNotNull(gottenProduct);
 		assertEquals(gottenProduct.getId(), pro.getId());
-		assertEquals(gottenProduct.getProductName(), pro.getProductName());
+		assertEquals(gottenProduct.getName(), pro.getName());
 		assertEquals(gottenProduct.getShortDescription(), pro.getShortDescription());
 		assertEquals(gottenProduct.getLongDescription(), pro.getLongDescription());
-		assertEquals(gottenProduct.getImageUrl(), pro.getImageUrl());
+		assertEquals(gottenProduct.getImageLink(), pro.getImageLink());
 		assertEquals(gottenProduct.getPrice(), pro.getPrice());
 }
 	@Test
 	void canGetAllProduct(){
 		Product pro1 = Product.builder()
 								.id(1L)
-								.productName("product 1")
+								.name("product 1")
 								.shortDescription("product 1 short description")
 								.longDescription("product 1 long description")
-								.imageUrl("product 1 image")
+								.imageLink("product 1 image")
 								.price(245677D)
 								.build();
 		Product pro2 = Product.builder()
 								.id(1L)
-								.productName("product 2")
+								.name("product 2")
 								.shortDescription("product 2 short description")
 								.longDescription("product 2 long description")
-								.imageUrl("product 2 image")
+								.imageLink("product 2 image")
 								.price(2455477D)
 								.build();
 		
 		Product pro3 = Product.builder()
 								.id(1L)
-								.productName("product 3")
+								.name("product 3")
 								.shortDescription("product 3 short description")
 								.longDescription("product 3 long description")
-								.imageUrl("product 3 image")
+								.imageLink("product 3 image")
 								.price(245652477D)
 								.build();
 		List<Product> products = List.of(pro1, pro2, pro3);

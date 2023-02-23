@@ -20,9 +20,9 @@ public class ProductServiceImp implements ProductService{
 
 
     public Product saveProdcut(Product product) {
-        Optional<Product> savedProduct = productRepository.findByProductName(product.getProductName());
+        Optional<Product> savedProduct = productRepository.findByname(product.getName());
         if(savedProduct.isPresent()){
-            throw new InvalidConfigurationPropertyValueException("Name", product.getProductName(), "Product name"+product.getProductName()+" is already exist in database");
+            throw new InvalidConfigurationPropertyValueException("Name", product.getName(), "Product name"+product.getName()+" is already exist in database");
         }
         return productRepository.save(product);
     }
@@ -30,9 +30,9 @@ public class ProductServiceImp implements ProductService{
         return productRepository.getReferenceById(id);
     }
     public Product updateProduct(Product product){
-        Optional<Product> savedHotel = productRepository.findByProductName(product.getProductName());
+        Optional<Product> savedCart = productRepository.findByname(product.getName());
         if(savedHotel.isEmpty()){
-            throw new InvalidConfigurationPropertyValueException("Name",product.getProductName(), "Product name"+product.getProductName()+" is not exist in database");
+            throw new InvalidConfigurationPropertyValueException("Name",product.getName(), "Product name"+product.getName()+" is not exist in database");
         }
         return productRepository.save(product);
     }
